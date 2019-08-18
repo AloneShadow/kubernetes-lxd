@@ -60,6 +60,9 @@ To use it, install lxd and initialize it using `lxd init`. When prompted, answer
    - `raw.lxc`: this allows the lxc container to configure certain system resources.
    - `security.privileged` and `security.nesting`: for a privileged container which may create nested cgroups
 
+2.1. If you've got error: "Failed to start OOM watcher open /dev/kmsg: no such file or directory"
+Execute this command: lxc config device add "${container_name}" "kmsg" unix-char source="/dev/kmsg" path="/dev/kmsg"
+
 3. Restart your lxc container. Unfortunately, `lxc stop k8s-lxc` does not work for me. I need to do `lxc exec k8s-lxc reboot`.
 
 ### Using docker and kubernetes on zfs backed host systems
